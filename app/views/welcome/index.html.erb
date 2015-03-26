@@ -1,2 +1,32 @@
-<h1>Hello, Rails!</h1>
+<center>
+	<h1>Dashboard</h1>
+
+	<p>Nombre d'events créés <%= @cptCreate %></p>
+
+	<p>Nombre d'events supprimés <%= @cptDelete %></p> <br/>
+
+	<canvas id="myChart" width="400" height="400"></canvas>
+</center>
+
+<script src="Chart.js"></script>
+<script type="text/javascript" > 
+
+var data = {
+	labels: ["Event Create", "Event Delete"],
+	datasets: [
+		{
+			label: "Events",
+			fillColor: "rgba(220,220,220,0.5)",
+			strokeColor: "rgba(220,220,220,0.8)",
+			highlightFill: "rgba(220,220,220,0.75)",
+			highlightStroke: "rgba(220,220,220,1)",
+			data: [<%=  @cptCreate %>, <%=  @cptDelete %>]
+		}
+	]
+};
+
+var ctx = document.getElementById("myChart").getContext("2d");
+var myBarChart = new Chart(ctx).Bar(data);
+
+</script>
 
