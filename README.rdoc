@@ -1,7 +1,3 @@
-Cette application a pour but d'exploiter les informations données par github :
-https://www.githubarchive.org/
-
-
 == README
 
 This README would normally document whatever steps are necessary to get the
