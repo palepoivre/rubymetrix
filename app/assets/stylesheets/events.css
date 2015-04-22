@@ -1,0 +1,77 @@
+body{
+	background-color: #EAEAEA !important; 
+	height: 900px !important;
+	margin: 0 0 0 0 !important;
+}
+
+h1 {
+	color:black;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#barre_lateral{
+	background-color: #4664AA;
+	float:left;
+	position: fixed;
+	height: 100%;
+	width: 20%;
+	margin-right: 10px;
+	box-shadow: 0px 5px 5px 5px;
+}
+
+#graphdiv{
+	width: 75%;
+	height: 100%;
+	margin-left: 22%;
+	margin-right: 0px;
+}
+
+#graphtable{
+	width:100%;
+}
+
+#eventtable{
+	width:90%;
+	margin-left: 4px;
+}
+
+#banner{
+	background-color: #EAEAEA;
+	padding-bottom: 0px;
+	margin: 0 0 0 0;
+	color: black;
+	font-size:15px;
+	height:10%;
+}
+
+
+canvas{
+	width: 90%; 
+	height:450px;
+}
+
+a{
+	font-family: Arial,sans-serif; 
+	font-size: 1.8em; 
+	padding: 9px 10px 9px 10px; 
+	text-align: center; 
+	background: linear-gradient(#555, #2C2C2C) repeat scroll 0% 0% transparent; 
+	border-radius: 8px; 
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5), 0px -1px 0px rgba(255, 255, 255, 0.4); 
+	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2);
+	text-decoration: none;
+}
+
+.type_label, .nombre_label{
+	font-family: "Times New Roman", serif;
+	color: #EAEAEA;
+	font-weight: bold;
+	font-size: 14px;
+}

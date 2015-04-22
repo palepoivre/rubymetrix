@@ -1,0 +1,117 @@
+<div id="barre_lateral">
+  <h1>DashBoard</h1>
+  <table id="eventtable">
+    <% @events.each do |event| %>
+      <tr> 
+        <td class="type_label"><%= event.type %></td>
+        <td class="nombre_label"><%= event.nombre %></td>
+      </tr>
+    <% end %>
+  </table>
+  <br/>
+  <center>
+    <a href="/events/new" id="maj_link" onclick="maj_link()">Mettre à jour</a>
+    <br/><br/>
+    <p>Dernière mise à jour:</p>
+    <p><%= @msg %></p>
+  </center>
+</div>
+
+<br/>
+
+<div id="graphdiv">
+  <h1>RUBYMETRIX<h1>
+  <table id="graphtable">
+    <tr>  
+      <td><center><h2>Bar Chart</h2><canvas id="barchart" ></canvas></center></td>
+      <td><center><h2>Pie Chart</h2><canvas id="piechart" ></canvas></center></td>
+    </tr>
+    <tr>
+      <td><center><h2>Line Chart</h2><canvas id="linechart"></canvas></center></td>
+      <td><center><h2>Radar Chart</h2><canvas id="radarchart"></canvas></center></td>
+    </tr>
+  </table>
+</div>
+<script src="Chart.js"></script>
+<script type="text/javascript" > 
+
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+var value = <%= raw @data.map.to_json %>
+var type = <%= raw @labels.map.to_json %>
+
+var dataBar = {
+  labels: type,
+  datasets: [
+    {
+      label: "Bar Graph",
+      fillColor: "#3A61AF",
+      strokeColor: "#000000",
+      highlightFill: "#FFFFFF",
+      highlightStroke: "#000000",
+      data: value
+    }
+  ]
+};
+
+var dataPie = []
+for (var i = 0; i < type.length ; i++) {
+  dataPie.push({
+                value: value[i],
+                color: getRandomColor(),
+                highlight: "#FFF",
+                label: "\"" + type[i] + "\""
+            });
+
+}
+
+var dataLine = {
+    labels: type,
+    datasets: [
+        {
+            label: "Line Graph",
+            fillColor: "#3c9efb",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "#3A61AF",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: value
+        }
+    ]
+};
+
+var dataRadar = {
+    labels: type,
+    datasets: [
+      {
+          fillColor: "#3A61AF",
+          strokeColor: "rgba(255,255,255,1)",
+          pointColor: "#3A61AF",
+          pointStrokeColor: "#fff",
+          data: value
+      }
+    ]
+}
+
+var myBarChart = new Chart(document.getElementById("barchart").getContext("2d")).Bar(dataBar);
+var myPieChart = new Chart(document.getElementById("piechart").getContext("2d")).Pie(dataPie);
+var myLineChart = new Chart(document.getElementById("linechart").getContext("2d")).Line(dataLine);
+var myRadarChart = new Chart(document.getElementById("radarchart").getContext("2d")).Radar(dataRadar, {pointLabelFontSize : 10, pointLabelFontColor  : "#000000"});
+
+function maj_link(){
+  document.getElementById("maj_link").innerHTML = 'En cours ...';
+
+}
+
+</script>
+
+
