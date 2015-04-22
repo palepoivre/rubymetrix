@@ -1,1 +1,0 @@
-worker: rails server 
